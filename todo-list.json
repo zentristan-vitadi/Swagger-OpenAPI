@@ -1,0 +1,118 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Todolist RESTful API",
+        "version": "1",
+        "description": "OpenAPI for Todolist RESTful API",
+        "termsOfService": "https://www.programmerzamannow.com",
+        "contact": {
+            "name": "Eko Kurniawan Khannedy",
+            "email": "echo.khannedy@gmail.com",
+            "url": "https://www.programmerzamannow.com"
+        },
+        "license": {
+            "name": "APACHE 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080/api",
+            "description": "Local Development Server"
+        }
+    ],
+    "paths": {
+        "/todolists": {
+            "get": {
+                "summary": "Get all todolists",
+                "description": "Endpoint untuk mengambil semua data todolist",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil data todolist"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create new todolist",
+                "description": "Endpoint untuk membuat data todolist baru",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "description": "Judul todolist"
+                                    },
+                                    "priority": {
+                                        "type": "integer",
+                                        "description": "Prioritas tugas (1-5)"
+                                    }
+                                },
+                                "required": [
+                                    "title"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil membuat todolist baru"
+                    }
+                }
+            }
+        },
+        "/todolists/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID dari todolist",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "put": {
+                "summary": "Update todolist",
+                "description": "Endpoint untuk mengubah data todolist berdasarkan ID",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "priority": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil memperbarui todolist"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete todolist",
+                "description": "Endpoint untuk menghapus todolist berdasarkan ID",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil menghapus todolist"
+                    }
+                }
+            }
+        }
+    }
+}
